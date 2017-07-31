@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DrawViewsExample.xcscheme</key>
+		<key>CalcForLecture.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C73AD2BD1F2EAE85003B7813</key>
+		<key>C7F86A7F1F2EE21600779296</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  DrawViewsExample
+//  DrawViews
 //
 //  Created by Brian Voong on 7/31/17.
 //  Copyright © 2017 Lets Build That App. All rights reserved.
