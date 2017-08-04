@@ -15,21 +15,42 @@ struct VacationLocation {
     let longitude: Double
 }
 
-class ViewController: UIViewController {
+// Conform to protocol MKMapViewDelegate
+// Delegate is 代理
+class ViewController: UIViewController, MKMapViewDelegate {
+    
+    // delegate(代理) says "here's the custom view for the annotation(标签)"
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let ds = UITableViewDataSource
+        let dg = UITableViewDelegate
+        // create a custom View for pin
+        let customAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "id")
+        customAnnotationView.image = #imageLiteral(resourceName: "custom_pin")
+        // return the custom pin for the map
+        return customAnnotationView
+    }
 
     @IBAction func handleNext(_ sender: UIBarButtonItem) {
         print("Handling tapping next...")
         //currentIndex + 1 is next location index
-        let nextLocation = vacationLocations[currentIndex + 1]
-        currentIndex += 1 //increase current index by 1
         
+        let nextIndex = (currentIndex + 1) % vacationLocations.count
+        let nextLocation = vacationLocations[nextIndex]
+        currentIndex += 1
+
+//        if currentIndex == vacationLocations.count - 1 {
+//            currentIndex = 0
+//        } else {
+//            currentIndex += 1
+//        }
+        
+//        let nextLocation = vacationLocations[currentIndex]
         // set the region for the next location
         let locationCoordinate = CLLocationCoordinate2D(latitude: nextLocation.latitude, longitude: nextLocation.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
         let region = MKCoordinateRegion(center: locationCoordinate, span: span)
         mapView.setRegion(region, animated: true)
         
-//        currentLocation = nextLocation
     }
     var currentIndex = 0
     var vacationLocations = [VacationLocation]() // [Type]() creates a new empty array so that we can append things
@@ -41,6 +62,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let hawaii = VacationLocation(name: "Hawaii", latitude: 21.3149, longitude: -157.8591)
         
