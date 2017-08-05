@@ -48,7 +48,6 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         player.replaceCurrentItem(with: songPlayerItem)
         player.play() // this will start our song
         
-        
         print(previewUrlString)
     }
     
