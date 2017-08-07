@@ -25,12 +25,21 @@ class ViewController: UITableViewController {
         cell.backgroundColor = .yellow
         let car = cars[indexPath.row]
         cell.textLabel?.text = car.name
-        cell.detailTextLabel?.text = car.owner
+        cell.detailTextLabel?.text = String(car.year)
         return cell
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        // I have my view somewhere
+//        let startingFrame = //something
+//        UIView.animate(withDuration: 0.5) { 
+//            //animation should work here
+//            let endingFrame = //ending location
+//        }
         
         // you should have your own syncURL based on your own Wilddog account
         let options = WDGOptions(syncURL: "https://wd8910991638hewihy.wilddogio.com")
@@ -46,12 +55,19 @@ class ViewController: UITableViewController {
         
         // this is how you set data on a subtree, for example "cars"
         let carsReference = WDGSync.sync().reference().child("cars")
+        
+//        carsReference.queryOrdered(byChild: "year").observe(.childAdded, with: { (snapshot) in
+//            print(snapshot)
+//        }) { (err) in
+//            print("Failed to query ordered:", err)
+//        }
+        
 //        carsReference.updateChildValues(["name": "BMW"])
         
-        let carChildRef = carsReference.childByAutoId()
-        carChildRef.updateChildValues(["name": "Toyota"])
-        
-        //now I want to retrieve/fetch/get the data out of Wilddog
+//        let carChildRef = carsReference.childByAutoId()
+//        carChildRef.updateChildValues(["name": "Toyota"])
+//        
+//        //now I want to retrieve/fetch/get the data out of Wilddog
         carsReference.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let snapshots = snapshot.children.allObjects as! [WDGDataSnapshot]
@@ -62,11 +78,17 @@ class ViewController: UITableViewController {
                 // get our Wilddog car properties
                 let name = dictionary?["name"] as? String ?? ""
                 let owner = dictionary?["owner"] as? String ?? ""
+                let year = dictionary?["year"] as? Int ?? 0
                 // setup a new car object
-                let car = Car(name: name, owner: owner)
+                let car = Car(name: name, owner: owner, year: year)
                 // put it in my array for later
                 self.cars.append(car)
             }
+            
+            self.cars.sort(by: { (car1, car2) -> Bool in
+                return car1.year < car2.year
+            })
+            
             //always need to reload after I get more information to show
             self.tableView.reloadData()
             

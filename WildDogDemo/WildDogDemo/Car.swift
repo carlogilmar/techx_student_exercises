@@ -11,4 +11,5 @@ import Foundation
 struct Car {
     let name: String
     let owner: String
+    let year: Int
 }
