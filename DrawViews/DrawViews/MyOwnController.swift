@@ -26,14 +26,25 @@ class MyOwnController: UIViewController {
         return label
     }()
     
+    let profileView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .green
+        view.backgroundColor = .white
+        setHeaderAndTitle()
+    }
+    
+    func setHeaderAndTitle(){
         
         view.addSubview(headerView)
         view.addSubview(label)
+        view.addSubview(profileView)
         
         // Create the anchors
         
@@ -46,7 +57,11 @@ class MyOwnController: UIViewController {
         label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10).isActive = true
         label.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.9).isActive = true
         label.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 0.20).isActive = true
+       
+        profileView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant:10).isActive = true
+        profileView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        profileView.widthAnchor.constraint(equalTo: self.headerView.widthAnchor, multiplier: 0.40).isActive = true
+        profileView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.20).isActive = true
         
     }
-    
 }
