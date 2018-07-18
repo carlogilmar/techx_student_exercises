@@ -40,6 +40,27 @@ class MyOwnController: UIViewController {
         return view
     }()
 
+    let pic1View: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let pic2View: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let pic3View: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -52,6 +73,9 @@ class MyOwnController: UIViewController {
         view.addSubview(label)
         view.addSubview(profileView)
         view.addSubview(usernameView)
+        view.addSubview(pic1View)
+        view.addSubview(pic2View)
+        //view.addSubview(pic3View)
         
         // Create the anchors
         
@@ -74,6 +98,16 @@ class MyOwnController: UIViewController {
         usernameView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
         usernameView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.60).isActive = true
         usernameView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        
+        pic1View.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant:15).isActive = true
+        pic1View.centerXAnchor.constraint(equalTo: usernameView.centerXAnchor, constant: -100).isActive = true
+        pic1View.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.30).isActive = true
+        pic1View.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
+        
+        pic2View.centerYAnchor.constraint(equalTo: pic1View.centerYAnchor).isActive = true
+        pic2View.centerXAnchor.constraint(equalTo: pic1View.centerXAnchor, constant: 100).isActive = true
+        pic2View.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.30).isActive = true
+        pic2View.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
         
     }
 }
