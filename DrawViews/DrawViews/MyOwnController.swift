@@ -43,9 +43,10 @@ class MyOwnController: UIViewController {
         headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.20).isActive = true
         
         label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10).isActive = true
         label.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.9).isActive = true
         label.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 0.20).isActive = true
+        
     }
     
 }
